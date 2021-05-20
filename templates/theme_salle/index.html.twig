@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ThemeSalle index{% endblock %}
+
+{% block body %}
+    <h1>ThemeSalle index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Salle</th>
+                <th>Theme</th>
+                <th>DateDebut</th>
+                <th>DateFin</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for theme_salle in theme_salles %}
+            <tr>
+                <td>{{ theme_salle.id }}</td>
+                <td>{{ theme_salle.salle }}</td>
+                <td>{{ theme_salle.theme }}</td>
+                <td>{{ theme_salle.dateDebut ? theme_salle.dateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ theme_salle.dateFin ? theme_salle.dateFin|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('theme_salle_show', {'id': theme_salle.id}) }}">show</a>
+                    <a href="{{ path('theme_salle_edit', {'id': theme_salle.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('theme_salle_new') }}">Create new</a>
+{% endblock %}

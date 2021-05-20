@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ThemeSalle{% endblock %}
+
+{% block body %}
+    <h1>Edit ThemeSalle</h1>
+
+    {{ include('theme_salle/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('theme_salle_index') }}">back to list</a>
+
+    {{ include('theme_salle/_delete_form.html.twig') }}
+{% endblock %}

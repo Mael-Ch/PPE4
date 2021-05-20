@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+    {% block stylesheets %}
+        {#{{ encore_entry_link_tags('app') }}#}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    {% endblock %}
+
+    {% block javascripts %}
+        {#{{ encore_entry_script_tags('app') }}#}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    {% endblock %}
+    </head>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="../../admin">Page d'administration</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('avis_index') }}">| avis |</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('client_index') }}">| client |</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('facture_index') }}">| facture |</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('horaire_index') }}">| horaire |</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('joueur_index') }}">| joueur |</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('reservation_index') }}">| reservation |</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('partie_index') }}">| partie |</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('site_index') }}">| site |</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('theme_index') }}">| theme |</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('photos_index') }}">| photo |</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+</header>
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+</html>
