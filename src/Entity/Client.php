@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ClientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -61,6 +63,20 @@ class Client
      * @ORM\ManyToOne(targetEntity=Facture::class, inversedBy="credit")
      */
     private $facture;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Partie::class, mappedBy="Client")
+     */
+    private $client;
+
+
+
+    public function __construct()
+    {
+        $this->parties = new ArrayCollection();
+        $this->partie = new ArrayCollection();
+        $this->client = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -171,6 +187,96 @@ class Client
     public function setFacture(?Facture $facture): self
     {
         $this->facture = $facture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Partie[]
+     */
+    public function getParties(): Collection
+    {
+        return $this->parties;
+    }
+
+    public function addParty(Partie $party): self
+    {
+        if (!$this->parties->contains($party)) {
+            $this->parties[] = $party;
+            $party->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParty(Partie $party): self
+    {
+        if ($this->parties->removeElement($party)) {
+            // set the owning side to null (unless already changed)
+            if ($party->getClient() === $this) {
+                $party->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Partie[]
+     */
+    public function getPartie(): Collection
+    {
+        return $this->partie;
+    }
+
+    public function addPartie(Partie $partie): self
+    {
+        if (!$this->partie->contains($partie)) {
+            $this->partie[] = $partie;
+            $partie->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removePartie(Partie $partie): self
+    {
+        if ($this->partie->removeElement($partie)) {
+            // set the owning side to null (unless already changed)
+            if ($partie->getClient() === $this) {
+                $partie->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Partie[]
+     */
+    public function getClient(): Collection
+    {
+        return $this->client;
+    }
+
+    public function addClient(Partie $client): self
+    {
+        if (!$this->client->contains($client)) {
+            $this->client[] = $client;
+            $client->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClient(Partie $client): self
+    {
+        if ($this->client->removeElement($client)) {
+            // set the owning side to null (unless already changed)
+            if ($client->getClient() === $this) {
+                $client->setClient(null);
+            }
+        }
 
         return $this;
     }

@@ -101,7 +101,7 @@
         "version": "2.2.0"
     },
     "nikic/php-parser": {
-        "version": "v4.10.4"
+        "version": "v4.10.5"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"

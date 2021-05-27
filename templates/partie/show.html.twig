@@ -16,10 +16,6 @@
                 <td>{{ partie.date ? partie.date|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>Horaire</th>
-                <td>{{ partie.horaire }}</td>
-            </tr>
-            <tr>
                 <th>Temps</th>
                 <td>{{ partie.temps ? partie.temps|date('H:i:s') : '' }}</td>
             </tr>
@@ -31,6 +27,11 @@
                 <th>Salle</th>
                 <td>{{ partie.salle }}</td>
             </tr>
+            <tr>
+                <th>Client</th>
+                <td>{{ partie.client }}</td>
+            </tr>
+
         </tbody>
     </table>
 

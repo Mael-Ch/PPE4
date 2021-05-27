@@ -34,6 +34,17 @@ class Partie
      */
     private $win;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="client")
+     */
+    private $Client;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Site::class, inversedBy="parties")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Salle;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,6 +82,42 @@ class Partie
     public function setWin(?int $win): self
     {
         $this->win = $win;
+
+        return $this;
+    }
+
+    public function getSite(): ?Site
+    {
+        return $this->Site;
+    }
+
+    public function setSite(?Site $Site): self
+    {
+        $this->Site = $Site;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->Client;
+    }
+
+    public function setClient(?Client $Client): self
+    {
+        $this->Client = $Client;
+
+        return $this;
+    }
+
+    public function getSalle(): ?Site
+    {
+        return $this->Salle;
+    }
+
+    public function setSalle(?Site $Salle): self
+    {
+        $this->Salle = $Salle;
 
         return $this;
     }

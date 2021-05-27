@@ -45,6 +45,11 @@ class Site
      */
     private $photos;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Partie::class, mappedBy="Salle")
+     */
+    private $parties;
+
 
     public function __construct()
     {
@@ -157,4 +162,36 @@ class Site
 
         return $this;
     }
+
+    /**
+     * @return Collection|Partie[]
+     */
+    public function getParties(): Collection
+    {
+        return $this->parties;
+    }
+
+    public function addParty(Partie $party): self
+    {
+        if (!$this->parties->contains($party)) {
+            $this->parties[] = $party;
+            $party->setSite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParty(Partie $party): self
+    {
+        if ($this->parties->removeElement($party)) {
+            // set the owning side to null (unless already changed)
+            if ($party->getSalle() === $this) {
+                $party->setSalle(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

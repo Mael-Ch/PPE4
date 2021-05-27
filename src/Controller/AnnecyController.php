@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Avis;
 use App\Form\AvisType;
 use App\Repository\AvisRepository;
+use App\Repository\PartieRepository;
 use App\Repository\PhotosRepository;
 use App\Repository\SalleRepository;
 use App\Repository\SiteRepository;
@@ -18,7 +19,7 @@ class AnnecyController extends AbstractController
     /**
      * @Route("/annecy")
      */
-    public function index(PhotosRepository  $photosRepository, ThemeRepository $themeRepository): Response
+    public function index(PhotosRepository  $photosRepository, ThemeRepository $themeRepository, PartieRepository $partieRepository): Response
     {
         $toutesLesPhotosAnnecySalle1 = $photosRepository->findBy(['site' => "6"]);
         $toutesLesPhotosAnnecySalle2 = $photosRepository->findBy(['site' => "5"]);
@@ -32,6 +33,8 @@ class AnnecyController extends AbstractController
         $themeSalle2 = $themeRepository->findBy(['site' => '5']);
         $themeSalle3 = $themeRepository->findBy(['site' => '4']);
         $themeSalle4 = $themeRepository->findBy(['site' => '3']);
+        $Partie = $partieRepository->findBy(['win' => '1'], ['temps' => 'ASC']);
+
 
 
         return $this->render('page_annecy/index.html.twig', [
@@ -45,6 +48,7 @@ class AnnecyController extends AbstractController
             'themeSite2' => $themeSalle2,
             'themeSite3' => $themeSalle3,
             'themeSite4' => $themeSalle4,
+            'UnePartie' => $Partie[0],
         ]);
     }
 }
